@@ -1,0 +1,134 @@
+body {
+    margin: 0px;
+    border: 0px;
+    background-color: rgb(43, 41, 42);
+}
+
+h3 {
+    color: azure;
+}
+
+.fullWindow {
+    display: block;
+    width: 100%;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.footerBar {
+    background-color: rgb(88, 88, 88);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.copyrightsBlock {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+.feedBackBlock {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 15px;
+}
+
+.contact {
+    color: azure;
+    outline: none;
+    text-decoration: none;
+}
+
+.logoLink, .profileLink {
+    display: flex;
+    outline: none;
+    text-decoration: none;
+}
+
+.link {
+    outline: none;
+    text-decoration: none;
+}
+
+.topWindow {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 91.5%;
+    margin-top: 10px;
+}
+
+.main {
+    position: relative;
+    margin-left: 12px;
+    width: 85%;
+    height: 100%;
+    display: flex;
+}
+
+.mainActivity {
+    position: relative;
+    width: 81.5%;
+    height: 100%;
+}
+
+.leftMenu, .rightMenu {
+    background-color: rgb(112, 112, 112);
+    height: 100%;
+    border: 2px;
+    border-color: black;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 5px rgb(226, 226, 226);
+}
+
+.rightMenu { 
+    width: 17.648%;
+}
+
+.leftMenu {
+    position: relative;
+    left: 15px;
+    width: 15%;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 9px 10px 9px 0;
+    display: flex;
+    flex-direction: column;
+    justify-items: stretch;
+    align-items: center;
+}
+
+.generalPage, .profilePage{
+    margin-top: 10px;
+    padding-bottom: 10px;
+    margin-right: 40px;
+    height: 56px;
+}
+
+.profilePage {
+    margin-left: 50px;
+}
+
+@font-face {
+    font-family: SlackCasual;
+    src: url(SlackCasual-Bold-Cyr.ttf)
+}
+
+.menuFont {
+    font-family: SlackCasual, 'Comic Sans MS', cursive;
+}
+
+.menuItem {
+    width: 171.92px;
+    margin-top: 15px;
+    margin-right: 40px;
+}
