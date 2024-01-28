@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block mainActivity %}
+    <div class="con dFlex directCol alingC posAbs">
+        <div class="postCon posRel dFlex directCol alignC">
+            <div class="user_title">
+                <div class="imageMini alignC"><img class="img_in_post" src="{{post.author_login.profile_image.url}}" alt="{{post.author_login.profile_image}}"></div>
+                <div class="authorMini alignC">
+                    <span style="font-size: 24px; margin-left: 8px; margin-right: 6px; color: azure;">{{post.author_login.login}}</span>
+                    <span style="color: rgb(129, 129, 129)">•</span>
+                    <span style="font-size: 14px; margin-left: 4px; color: rgba(240, 255, 255, 0.603);">{{post.post_date}}</span>
+                </div>
+                <div class="titleMini alignC">
+                    <span style="position: absolute;right: 0;font-size: 24px;color: azure;">{{post.post_title}}</span>
+                </div>
+            </div>
+            <div class="post_image alignC">
+                <img class="post_img" src="{{post.post_image.url}}" alt="{{post.post_image}}">
+            </div>
+            <div class="likes dFlex alignC">
+                        
+
+                <form id="like-form" method="post" action="{% url 'like_post' post.post_id %}" data-post-id="{{ post.post_id }}">
+                    {% csrf_token %}
+                    <button class="bLike" type="submit"><img class="like_img" src="https://i.postimg.cc/MKjVDJj3/heart.png" alt="Like"></button>
+                </form>
+                
+                
+                <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                <script>
+                    $(document).ready(function() {
+                        $('.bLike').on('click', function() {
+                            var form = $(this).closest('form');
+                            var post_id = form.data('post-id');
+                    
+                            $.ajax({
+                                url: form.attr('action'),
+                                type: 'POST',
+                                data: { csrfmiddlewaretoken: form.find('[name="csrfmiddlewaretoken"]').val(), post: post_id },
+                                success: function(data) {
+                                    console.log(data);
+                    
+                                    var likesSpan = form.siblings('.likes-count');
+                                    var likeImage = form.find('.like_img');
+                    
+                                    if (data.message === 'success') {
+                                        var currentLikes = parseInt(likesSpan.text(), 10);
+                                        likesSpan.text(currentLikes + 1);
+                    
+                                        likeImage.attr('src', 'https://i.postimg.cc/q709RNr4/redheart.png');
+                                    } else if (data.message === 'unliked') {
+                                        var currentLikes = parseInt(likesSpan.text(), 10);
+                                        likesSpan.text(currentLikes - 1);
+                    
+                                        likeImage.attr('src', 'https://i.postimg.cc/MKjVDJj3/heart.png');
+                                    }
+                                }
+                            });
+                    
+                            return false;
+                        });
+                    });
+                </script>
+                <span style="font-size: 16px; margin-left: 4px; color: rgba(255, 255, 255, 0.603); width: 350px;">{{post.post_likes}}</span>
+                {% if post.author_login.login != user.login %}
+                    <span style="font-size: 16px; margin-right: 6px; color: azure;">{{post.img_price}}$</span>
+                    <div class="buyButton">
+                        <form method="post" action="{% url 'buy' post.post_id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <button style="background-color: transparent; border: 0" type="submit"><span style="font-size: 16px; color: azure;">Купить</span></button>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="comments dFlex directCol alignC">
+                {% for comm in comms %}
+                    <div style="width: 100%; margin-top: 15px;">
+                        <div class="comAuthor alignC">
+                            <span style="font-size: 16px; margin-left: 4px; margin-right: 6px; color: azure;">{{comm.author_login.login}}</span>
+                            <span style="color: rgb(129, 129, 129)">•</span>
+                            <span style="font-size: 12px; margin-left: 4px; color: rgba(240, 255, 255, 0.603);">{{comm.comment_date}}</span>
+                        </div>
+                        <div class="comContent dFlex">
+                            <span style="font-size: 14px; margin-left: 4px; margin-right: 6px; color: azure;">{{comm.comment_content}}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div style="width: 100%; margin-top: 23px;">
+                    <div class="user"><span style="font-size: 16px; margin-left: 4px; margin-right: 6px; color: azure;">{{user.login}}</span></div>
+                    <form  class="commForm" style="width: 100%;" method="post" action="{% url 'addCommnet' post.post_id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="err" style="justify-content: center;">{{ form.non_field_errors }}</div>
+                        <div class="form-group">
+                            <div class="noErr">
+                                {{ form.comment_content }}
+                            </div>
+                            <div class="err">{{ form.comment_content.errors }}</div>
+                        </div>
+                        <button type="submit"><span style="font-size: 12px;">Отправить</span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block ip %}
+    {{user_ip}}
+{% endblock %}

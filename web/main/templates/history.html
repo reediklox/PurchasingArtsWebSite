@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block mainActivity %}
+    <div class="profileCon dFlex directCol">
+        <div class="userProfileInfo dFlex alignC">
+            <div class="dFlex alignC">
+                <div class="userLogin"><span class="sUserLogin">История покупок</span></div>
+            </div>
+        </div>
+        <div class="postsInfo dFlex directCol">
+            <div class="postInteractive dFlex alignC">
+                <div class="allPostsSpan"><span class="sUserJoin">Покупки:</span></div>
+            </div>
+            <div class="allPosts dFlex directCol">
+                {% if rights.exists %}
+                    {% for right in rights %}
+                        <div class="showPost"><a class="link" href="{% url 'post' right.post_id.post_id %}"><span class="sPosts">{{right}}</span></a></div>
+                    {% endfor %}
+                {% else %}
+                    <div class="showPost"><span class="sPosts">Нет купленных постов</span></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

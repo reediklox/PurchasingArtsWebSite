@@ -48,6 +48,7 @@ footer {
     display: flex;
     outline: none;
     text-decoration: none;
+    align-items: center;
 }
 
 .link {
@@ -115,20 +116,30 @@ footer {
 }
 
 .profilePage {
-    margin-left: 50px;
+    margin-left: -16px;
 }
 
 @font-face {
     font-family: SlackCasual;
-    src: url(resources\SlackCasual-Bold-Cyr.ttf)
+    src: url(SlackCasual-Bold-Cyr.ttf)
+}
+
+@font-face {
+    font-family: LavaLamp;
+    src: url(Lavalampfilled.ttf)
+}
+
+@font-face {
+    font-family: LavaLampOrnam;
+    src: url(Lavalampornament.ttf)
 }
 
 .menuFont {
-    font-family: SlackCasual, 'Comic Sans MS', cursive;
+    font-family: LavaLamp, 'Comic Sans MS', cursive;
 }
 
 .menuItem {
-    width: 171.92px;
+    width: 190px;
     margin-top: 15px;
     margin-right: 40px;
 }

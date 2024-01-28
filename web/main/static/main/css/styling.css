@@ -2,6 +2,13 @@ body {
     margin: 0px;
     border: 0px;
     background-color: rgb(43, 41, 42);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.fullWindow, .main, .mainActivity, .con, .topWindow {
+    min-height: 100vh;
 }
 
 h3 {
@@ -48,6 +55,7 @@ footer {
     display: flex;
     outline: none;
     text-decoration: none;
+    align-items: center;
 }
 
 .link {
@@ -56,25 +64,23 @@ footer {
 }
 
 .topWindow {
-    position: absolute;
     display: flex;
     width: 100%;
-    height: 91.5%;
     margin-top: 10px;
 }
 
 .main {
     position: relative;
-    margin-left: 12px;
+    margin-left: 15%;
+    margin-right: 15%;
     width: 85%;
-    height: 100%;
     display: flex;
 }
 
 .mainActivity {
     position: relative;
     width: 81.5%;
-    height: 100%;
+    flex: 1;
 }
 
 .leftMenu, .rightMenu {
@@ -84,14 +90,15 @@ footer {
     border-color: black;
     border-radius: 15px;
     box-shadow: 0px 0px 10px 5px rgb(226, 226, 226);
+    position: fixed;
 }
 
-.rightMenu { 
-    width: 17.648%;
+.rightMenu {
+    right: 15px; 
+    width: 15%;
 }
 
 .leftMenu {
-    position: relative;
     left: 15px;
     width: 15%;
 }
@@ -115,7 +122,11 @@ footer {
 }
 
 .profilePage {
-    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    margin-left: 21px;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 @font-face {
@@ -123,12 +134,377 @@ footer {
     src: url(SlackCasual-Bold-Cyr.ttf)
 }
 
+@font-face {
+    font-family: LavaLamp;
+    src: url(Lavalampfilled.ttf)
+}
+
+@font-face {
+    font-family: DELL;
+    src: url(DELLCYR.ttf)
+}
+
 .menuFont {
-    font-family: SlackCasual, 'Comic Sans MS', cursive;
+    font-family: LavaLamp, 'Comic Sans MS', cursive;
+}
+
+.attrFont {
+    font-family: DELL;
 }
 
 .menuItem {
-    width: 171.92px;
+    width: 190px;
     margin-top: 15px;
     margin-right: 40px;
+}
+
+.dFlex{
+    display: flex;
+}
+
+.directCol {
+    flex-direction: column;
+}
+
+.alignC {
+    align-items: center;
+}
+
+.posAbs {
+    position: absolute;
+}
+
+.posRel {
+    position: relative;
+}
+
+.con {
+    position: relative;
+    width: 40%;
+    border-left: solid 2px;
+    border-right: solid 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    background-color: rgb(51, 49, 50);
+    margin-bottom: 5%;
+}
+
+.postCon {
+    padding-top: 5px;
+    padding-bottom: 25px;
+
+    border-bottom: solid 1px;
+}
+
+.user_title {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+}
+
+.imageMini {
+    width: 50px;
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    justify-items: center;
+}
+
+.img_in_post{
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.like_img {
+    object-fit: cover;
+    width: 25px;
+    height: 25px;
+}
+
+.authorMini {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.titleMini {
+    position: sticky;
+    display: inline-grid;
+    width: 170px;
+    height: 100%;
+    right: 0px;
+}
+
+.post_image {
+    margin-top: 10px;
+    max-width: 100%;
+    max-height: 600px;
+    display: inline-grid;
+}
+
+.post_img {
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 600px;
+    border-radius: 2%;
+}
+
+.likes {
+    padding-left: 5px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.buyButton {
+    width: 100px;
+    height: 100%;
+    background-color: rgba(172, 255, 47, 0.733);
+    border: 2px 2px 2px 2px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.comments {
+    width: 100%;
+}
+
+.comAuthor {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+}
+
+.comContent {
+    width: 100%;
+    background-color: rgb(61, 59, 60);
+    margin-top: 6px;
+}
+
+.bLike {
+    cursor: pointer;
+    background-color: transparent;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.regContainer {
+    width: 40%;
+    min-height: 40%;
+}
+
+.regForm {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(51, 49, 50);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.regForm input[type="text"],
+.regForm input[type="password"],
+.regForm input[type="email"] {
+  width: 60%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+.regForm label {
+    display: block;
+    margin-top: 5px;
+    color: azure;
+    font-size: 12px;
+}
+
+.regForm .noErr {
+    width: 95%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.regForm .form-group {
+    width: 100%;
+}
+
+.regForm .err {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    color: rgb(189, 77, 77);
+}
+
+.regForm button {
+    margin-top: 15px;
+    background-color: rgb(43, 41, 42);;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.changeImg {
+    margin-top: 5px;
+    margin-left: 10px;
+    background-color: rgb(51, 49, 50);;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.regForm .submitB {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+  }
+
+.categories:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(112, 112, 112); 
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: azure; 
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #555555; 
+}
+
+.dropdown-content a:hover {
+    background-color: #555;
+}
+
+.profileCon {
+    width: 90%;
+    height: 90%;
+    overflow: hidden;
+}
+
+.userProfileInfo {
+    height: 150px;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: solid 1px;
+}
+
+.userImg {
+    width: 120px;
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    justify-items: center;
+}
+
+.img_in_profile{
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.userLogin {
+    padding-bottom: 12px;
+    margin-left: 5px;
+}
+
+.sUserLogin {
+    font-size: 32px;
+    color: azure;
+}
+
+.sUserJoin {
+    font-size: 20px;
+    color: azure;
+}
+
+.sPosts {
+    font-size: 14px;
+    color: azure;
+}
+
+.postsInfo {
+    margin-top: 20px;
+    background-color: rgb(112, 112, 112);
+    min-height: 100px;
+    padding-left: 15px;
+    padding-right: 15px;
+    align-items: center;
+}
+
+.postInteractive {
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: rgb(77, 77, 77) solid 1px;
+    padding-bottom: 15px;
+    padding-top: 10px;
+}
+
+.allPostsSpan {
+    padding-left: 10px;
+}
+
+.addPostDiv {
+    padding-right: 10px;
+    height: 100%;
+}
+
+.addPost {
+    margin-top: 5px;
+    background-color: rgb(51, 49, 50);;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.allPosts {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.showPost {
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+#templateImage {
+    cursor: pointer;
+}
+
+.commForm input[type="textarea"]{
+    width: 99%;
+    height: 100px;
+    background-color: #555555;
+    font-size: 12px;
 }

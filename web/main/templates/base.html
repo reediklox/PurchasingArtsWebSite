@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ArtEx</title>
+    <link rel="icon" href="{% static 'main/img/LogoWithOutText.png' %}">
+    <link rel="stylesheet" href="{% static 'main/css/styling.css' %}">
+</head>
+<body >
+    <div class="fullWindow">
+        <div class="topWindow">
+            <div class="leftMenu">
+                <div class="container">
+                    <div class="generalPage">
+                        <a class="logoLink" href="{% url 'home' %}">
+                            <img style="width: 50px;" src="{% static 'main/img/LogoWithOutText.png' %}" alt="ArtEx">
+                            <span class="fontStyleLogo menuFont" style="align-items: center; font-size: 30px; margin-left: 6px; color: azure;">ArtEx</span>
+                        </a>
+                    </div>
+                    <div class="leftMenuAttributes">
+                        <div class="popularPaint menuItem">
+                            <a class="link" href="{% url 'pop' %}">
+                                <span class="fontStylePop attrFont" style="font-size: 20px; margin-left: 6px; color: azure;">Популярное</span>
+                            </a>
+                        </div>
+                        <div class="categories menuItem">
+                            <a class="link" href="#">
+                                <span class="fontStyleCateg attrFont" style="font-size: 20px; margin-left: 6px; color: azure;">Категории</span>
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="{% url 'category' 'р' %}"><span style="font-size: 14px; color: azure;">Ручная живопись</span></a>
+                                <a href="{% url 'category' 'к' %}"><span style="font-size: 14px; color: azure;">Компьютерная живопись</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main">  
+                <div class="mainActivity" style="display: flex; flex-direction: column; align-items: center;">
+                    {% block mainActivity %}
+                    {% endblock %}
+                </div>
+                <div class="rightMenu">
+                    <div class="container">
+                        <div class="profilePage">
+                            {% if user.is_authenticated %}
+                                <a class="profileLink" href="{% url 'profile' %}">
+                                    <img style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%;" src="{{user.profile_image.url}}" alt="User image">
+                                    <span class="fontStyleProfile menuFont" style="font-size: 15px; margin-left: 6px; color: azure;">{{user.login}}</span>
+                                </a>
+                                <a class="link" href="{% url 'logout' %}"><span style="font-size: 16px; color:azure">logout</span></a>
+                            {% else %}
+                                <a class="profileLink" href="{% url 'login' %}">
+                                    <img style="width: 40px;" src="{% static 'main/img/UnknownLogo.png' %}" alt="User image">
+                                    <span class="fontStyleProfile menuFont" style="font-size: 15px; margin-left: 6px; color: azure;">{% block ip %}{% endblock %}</span>
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="rightMenuAttributes">
+                            <div class="mark menuItem">
+                                {% if user.is_authenticated %}
+                                    <a class="link" href="{% url 'marks' %}">
+                                        <span class="fontStyleMark attrFont" style="font-size: 20px; margin-left: 6px; color: azure;">Закладки</span>
+                                    </a>
+                                {% else %}
+                                    <a class="link" href="#">
+                                        <span class="fontStyleMark attrFont" style="font-size: 20px; margin-left: 6px; color: azure;">Закладки (Недоступно)</span>
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="purchHistory menuItem">
+                                {% if user.is_authenticated %}
+                                <a class="link" href="{% url 'history' %}">
+                                    <span class="fontStyleHistory attrFont" style="font-size: 20px; margin-left: 6px; color: azure;">История покупок</span>
+                                </a>
+                                {% else %}
+                                <a class="link" href="#">
+                                    <span class="fontStyleHistory attrFont" style="font-size: 20px; margin-left: 6px; color: azure;">История покупок (Недоступно)</span>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footerBar">
+                <span class="copyrightsBlock">
+                    <h3>&copy; 2024 ArtEx | All rights reserved</h3>
+                </span>
+                <span class="feedBackBlock">
+                    <h3><a class="contact" href="https://t.me/reediklox">Contact us</a></h3>
+                </span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

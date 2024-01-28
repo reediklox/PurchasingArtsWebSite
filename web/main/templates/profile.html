@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block mainActivity %}
+    <div class="profileCon dFlex directCol">
+        <div class="userProfileInfo dFlex alignC">
+            <div class="dFlex alignC">
+                <div class="userImg">
+                    <form id="uploadForm" method="post" action="{% url 'imgChange' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <img id="templateImage" class="img_in_profile" src="{{user.profile_image.url}}" alt="" onclick="document.getElementById('fileinput').click()">
+                        <input type="file" id="fileinput" name="profile_image" accept="image/*" style="display: none;" onchange="displayImage(this)" />
+                        <button class="changeImg" type="submit">Изменить</button>
+
+                        <script>
+                            function displayImage(input) {
+                                var templateImage = document.getElementById('templateImage');
+
+                                var file = input.files[0];
+                                if (file) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        templateImage.src = e.target.result;
+                                    };
+                                    reader.readAsDataURL(file);
+                                }
+                            }
+                        </script>
+                    </form>
+                </div>
+                <div class="userLogin"><span class="sUserLogin">{{user.login}}</span></div>
+            </div>
+            <div class="regDate"><span class="sUserJoin">Дата регистрации: {{user.date_joined}}</span></div>
+        </div>
+        <div class="postsInfo dFlex directCol">
+            <div class="postInteractive dFlex alignC">
+                <div class="allPostsSpan"><span class="sUserJoin">Посты:</span></div>
+                <div class="addPostDiv">
+                    <a class="link" href="{% url 'add' %}">
+                        <button class="addPost">Добавить пост</button>
+                    </a>
+                </div>
+            </div>
+            <div class="allPosts dFlex directCol">
+                {% if posts.exists %}
+                    {% for post in posts %}
+                        <div class="showPost"><a class="link" href="{% url 'post' post.post_id %}"><span class="sPosts">{{post}}</span></a></div>
+                    {% endfor %}
+                {% else %}
+                    <div class="showPost"><span class="sPosts">Нет созданных постов</span></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
